@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #6b889a;
+}
+
+:root {
+  --primary-color: #264653; /* Dark blue */
+  --secondary-color: #2a9d8f; /* Teal */
+  --accent-color: #e9c46a; /* Yellow */
+  --dark-color: #023047; /* Navy blue */
+  --light-color: #f4a261; /* Orange */
+  --background-color: #457b9d; /* Blue-gray */
+}
+
+.language-selector{
+  background-color: var(--dark-color);
+  color: var(--secondary-color);
+  font-size: 72px;
+  text-align: center;
+  padding: 18px;
+}
+
+.menu{
+  background-color: var(--primary-color);
+  font-size: 36px;
+  padding: 12px;
+}
+
+.menu a{
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  text-decoration: none; /* Remove underline from links */
+}
+
+.menu a:hover{
+  background-color: var(--primary-color);
+  text-decoration: underline;
+}
+
+select {
+  /* Reset all default styles */
+  appearance: none; /* Removes the default dropdown arrow */
+  -webkit-appearance: none; /* For older versions of WebKit browsers */
+  -moz-appearance: none; /* For older versions of Mozilla browsers */
+  -webkit-border-radius: 0; /* Removes rounded corners */
+  -moz-border-radius: 0; /* Removes rounded corners */
+  border-radius: 0; /* Removes rounded corners */
+  border: none; /* Add a border for better visibility */
+  background-color: var(--dark-color); /* Set a background color */
+  padding: 10px; /* Add padding for better spacing */
+  font-family: inherit; /* Use the same font as the parent element */
+  font-size: inherit; /* Use the same font size as the parent element */
+  color: inherit; /* Use the same text color as the parent element */
+} 
+

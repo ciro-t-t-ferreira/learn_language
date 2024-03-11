@@ -25,14 +25,17 @@ const LetterBlocks = (props) => {
     const dictionary = dictionaryMapping[language]
 
     const dictionaryArray = Object.keys(dictionary);
-    const randomLetters = selectRandomLetters(dictionaryArray, blockQuantity)
+    const randomLettersArray = selectRandomLetters(dictionaryArray, blockQuantity)
 
     return ( 
     <div className="letter-block-container">
-        <div className="block">
-            <div className="letter">{ randomLetters[0] }</div>
-            <div className="transliteration">{ dictionary[randomLetters[0]] }</div>
-        </div>
+        {randomLettersArray.map((letter, index)=> (
+            <div className="block" key={index}>
+                <div className="letter">{ letter }</div>
+                <div className="transliteration">{ dictionary[letter] }</div>
+            </div>
+        ))}
+        
     </div> );
 }
  

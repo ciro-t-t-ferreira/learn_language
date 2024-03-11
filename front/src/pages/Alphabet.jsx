@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const AlphabetPage = () => {
     const { language } = useLanguageContext()
+    console.log(language)
     const [blockQuantity, setBlockQuantity] = useState(5);
     
     const handleBlockQuantityChange = (newBlockQuantity) => {

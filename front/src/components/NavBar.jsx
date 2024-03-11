@@ -12,8 +12,8 @@ const NavBar = () => {
         <div> 
             <div className="language-selector">Learn 
             <select onChange={(e) => handleChange(e)}>
-                    <option value="devanagri">Devanagari</option>
                     <option value="greek">Greek </option>
+                    <option value="devanagari">Devanagari</option>
                     <option value="hebrew">Hebrew </option>
                     <option value="cyrillic">Cyrillic </option>
             </select>

@@ -4,7 +4,7 @@ export const LanguageContext = createContext(null)
 
 // eslint-disable-next-line react/prop-types
 export const LanguageContextProvider = ( {children} ) => {
-    const [language, setLanguage] = useState('devanagari');
+    const [language, setLanguage] = useState('greek');
 
     return(
         <LanguageContext.Provider value={ {language, setLanguage} }>

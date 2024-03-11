@@ -1,8 +1,6 @@
-import { useState } from "react";
+// eslint-disable-next-line react/prop-types
+const NumberAdjust = ({blockQuantity, setBlockQuantity, children}) => {
 
-const NumberAdjust = () => {
-
-    const [blockQuantity, setBlockQuantity] = useState(5)
 
     const handleMinus = () => {
         if(blockQuantity > 1){
@@ -22,10 +20,12 @@ const NumberAdjust = () => {
         }        
     }
 
-    return (<div className="number-adjust"> 
-        <button onClick={handleMinus}>-</button>
-        <span>{blockQuantity}</span>
-        <button onClick={handlePlus}>+</button>
+    return (
+        <div className="number-adjust"> 
+            <button onClick={handleMinus}>-</button>
+            <span>{blockQuantity}</span>
+            <button onClick={handlePlus}>+</button>
+            {children}
         </div>
      );
 }

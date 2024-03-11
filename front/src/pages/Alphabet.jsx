@@ -1,16 +1,28 @@
 import { useLanguageContext } from "../hooks/useLanguageContext";
-import LetterBlock from "../components/LetterBlock";
+import LetterBlocks from "../components/LetterBlocks";
 import NumberAdjust from "../components/NumberAdjust";
+import { useState } from "react";
+
 
 const AlphabetPage = () => {
     const { language } = useLanguageContext()
+    const [blockQuantity, setBlockQuantity] = useState(5);
+    
+    const handleBlockQuantityChange = (newBlockQuantity) => {
+        setBlockQuantity(newBlockQuantity);
+    }
+
     return ( 
         <div className="home">
             <h2>Alphabet: { language } </h2>
-            <LetterBlock />
-            <NumberAdjust />
+            <NumberAdjust 
+             blockQuantity={blockQuantity}
+             setBlockQuantity={setBlockQuantity}
+             onBlockQuantityChange={handleBlockQuantityChange}>
+                <LetterBlocks blockQuantity={blockQuantity}/>
+            </NumberAdjust>
         </div>
-     );
+    );
 }
  
 export default AlphabetPage;

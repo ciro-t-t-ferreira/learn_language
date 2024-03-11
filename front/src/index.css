@@ -55,3 +55,12 @@ select {
   color: inherit; /* Use the same text color as the parent element */
 } 
 
+.number-adjust button {
+  font-size: 60px; /* Adjust font size of the buttons */
+  width: 60px; /* Adjust width of the buttons */
+  height: 60px; /* Adjust height of the buttons */
+}
+
+.number-adjust span {
+  font-size: 60px; /* Adjust font size of the block quantity */
+}

@@ -1,8 +1,25 @@
 /* eslint-disable react/prop-types */
 import { useLanguageContext } from "../hooks/useLanguageContext";
 import { dictionaryMapping } from "../utilities/dictionaries";
+import { useState } from "react";
 
-function selectRandomLetters(dictionary, blockQuantity){
+const selectSingleDistinctRandomLetter = (lettersArray, dictionary) => {
+
+    if(lettersArray.length === dictionary.length){
+        throw Error ('No more letters in the alphabet')
+    }
+    const randomIndex = Math.floor(Math.random() * dictionary.length);
+    const randomLetter = dictionary[randomIndex];
+
+    if(randomLetter in lettersArray){
+        selectSingleDistinctRandomLetter(lettersArray, dictionary) 
+    }
+
+    return randomLetter
+
+}
+//selects the initial amount, when all letters should refresh
+function selectRandomLetters(dictionary, blockQuantity){ 
 
     let randomLettersArray = []
 
@@ -12,21 +29,37 @@ function selectRandomLetters(dictionary, blockQuantity){
         if(!(randomLetter in randomLettersArray)){
             randomLettersArray.push(randomLetter)
         }
-    }    
+    }
 
     return randomLettersArray
+}
+
+const changeAmountofLetters = (setLettersArray, blockQuantity, lettersArray, dictionary) => {
+    
+    if(blockQuantity > lettersArray.length){
+        let newLetter = selectSingleDistinctRandomLetter(lettersArray, dictionary)
+        setLettersArray(lettersArray.push(newLetter))
+    }
+
+    else if (blockQuantity < lettersArray.length) {
+        setLettersArray(lettersArray.pop())
+    }
+
 }
 
 const LetterBlocks = ({blockQuantity}) => {
     const { language } = useLanguageContext()
     const dictionary = dictionaryMapping[language]
-
     const dictionaryArray = Object.keys(dictionary);
-    const randomLettersArray = selectRandomLetters(dictionaryArray, blockQuantity)
+    
+    const [lettersArray, setLettersArray] = useState(selectRandomLetters(dictionaryArray, blockQuantity))
+    
+    changeAmountofLetters(setLettersArray, blockQuantity, lettersArray, dictionaryArray);
+    console.log(lettersArray)
 
     return ( 
     <div className="letter-block-container">
-        {randomLettersArray.map((letter, index)=> (
+        {lettersArray.map((letter, index)=> (
             <div className="block" key={index}>
                 <div className="letter">{ letter }</div>
                 <div className="transliteration">{ dictionary[letter] }</div>

@@ -12,15 +12,12 @@ function selectRandomLetters(dictionary, blockQuantity){
         if(!(randomLetter in randomLettersArray)){
             randomLettersArray.push(randomLetter)
         }
-    }
-    
-    console.log(randomLettersArray)
+    }    
 
     return randomLettersArray
 }
 
-const LetterBlocks = (props) => {
-    const blockQuantity = props.blockQuantity;
+const LetterBlocks = ({blockQuantity}) => {
     const { language } = useLanguageContext()
     const dictionary = dictionaryMapping[language]
 

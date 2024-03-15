@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useLanguageContext } from "../hooks/useLanguageContext";
 import { dictionaryMapping } from "../utilities/dictionaries";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const selectSingleDistinctRandomLetter = (lettersArray, dictionary) => {
 
@@ -53,6 +53,11 @@ const LetterBlocks = ({blockQuantity}) => {
     const [lettersArray, setLettersArray] = useState(selectRandomLetters(dictionaryArray, blockQuantity))
     
     changeAmountofLetters(setLettersArray, blockQuantity, lettersArray, dictionaryArray);
+
+    //Only runs this piece of code when alphabet is changed
+    useEffect(() =>{
+        setLettersArray(selectRandomLetters(dictionaryArray, blockQuantity))
+    }, [language])
 
     return ( 
     <div className="letter-block-container">

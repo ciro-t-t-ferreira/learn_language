@@ -47,6 +47,8 @@ const changeAmountofLetters = (setLettersArray, blockQuantity, lettersArray, dic
 
 const LetterBlocks = ({blockQuantity}) => {
     const { language } = useLanguageContext()
+    const [letterSwitch, setLetterSwitch] = useState(true)
+    const [transliterationSwitch, setTransliterationSwitch] = useState(true)
     const dictionary = dictionaryMapping[language]
     const dictionaryArray = Object.keys(dictionary);
     
@@ -60,15 +62,35 @@ const LetterBlocks = ({blockQuantity}) => {
     }, [language])
 
     return ( 
+    <>
     <div className="letter-block-container">
         {lettersArray.map((letter, index)=> (
             <div className="block" key={index}>
                 <div className="letter">{ letter }</div>
                 <div className="transliteration">{ dictionary[letter] }</div>
             </div>
-        ))}
-        
-    </div> );
+        ))}               
+    </div> 
+    <div className="letter-switch">
+        <input 
+            type="checkbox"
+            id="letters"
+            onChange={() => setLetterSwitch(!letterSwitch)}
+            checked={letterSwitch} 
+        />
+        <label htmlFor="letters">Letters</label>
+    </div>        
+    <div className="transliteration-switch">
+        <input 
+            type="checkbox"
+            id="transliteration"
+            onChange={() => setTransliterationSwitch(!transliterationSwitch)}
+            checked={transliterationSwitch} 
+        />
+        <label htmlFor="letters">Transliteration</label>
+    </div>  
+    </>
+    );
 }
  
 export default LetterBlocks;

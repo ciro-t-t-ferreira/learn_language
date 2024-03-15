@@ -39,7 +39,8 @@ const changeAmountofLetters = (setLettersArray, blockQuantity, lettersArray, dic
     }
 
     else if (blockQuantity < lettersArray.length) {
-        setLettersArray(lettersArray.pop())
+        lettersArray.pop()
+        setLettersArray(lettersArray)
     }
 
 }

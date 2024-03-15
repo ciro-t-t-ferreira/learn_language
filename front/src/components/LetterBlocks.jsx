@@ -2,6 +2,7 @@
 import { useLanguageContext } from "../hooks/useLanguageContext";
 import { dictionaryMapping } from "../utilities/dictionaries";
 import { useEffect, useState } from "react";
+import AnswerBox from "./AnswerBox"
 
 const selectSingleDistinctRandomLetter = (lettersArray, dictionary) => {
 
@@ -66,12 +67,16 @@ const LetterBlocks = ({blockQuantity}) => {
     <div className="letter-block-container">
         {lettersArray.map((letter, index)=> (
             <div className="block" key={index}>
-                <div className="letter">{ letter }</div>
-                <div className="transliteration">{ dictionary[letter] }</div>
+                {letterSwitch? 
+                  <div className="letter">{ letter }</div> :
+                  <div className="letter">?</div>}
+                {transliterationSwitch? 
+                  <div className="transliteration">{ dictionary[letter] }</div>:
+                  <AnswerBox answer={ dictionary[letter] } />}
             </div>
         ))}               
     </div> 
-    <div className="letter-switch">
+    <div className="switch">
         <input 
             type="checkbox"
             id="letters"
@@ -80,7 +85,7 @@ const LetterBlocks = ({blockQuantity}) => {
         />
         <label htmlFor="letters">Letters</label>
     </div>        
-    <div className="transliteration-switch">
+    <div className="switch">
         <input 
             type="checkbox"
             id="transliteration"

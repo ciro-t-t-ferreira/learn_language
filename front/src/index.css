@@ -96,3 +96,23 @@ select {
   font-size: 100px;
   margin: 7px;
 }
+
+.answer-box{
+  display: block;
+  color: var(--light-color);
+  background-color: var(--dark-color);      
+  border: 5px solid black;
+  padding: 15px;    
+  font-size: 100px;
+  margin: 7px;
+  max-width: 200px;
+}
+
+.switch{
+  font-size: 50px;
+}
+
+.switch input[type="checkbox"] {
+  width: 35px;
+  height: 35px;
+}

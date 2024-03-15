@@ -1,6 +1,9 @@
 import { createContext, useState } from 'react';
 
-export const LanguageContext = createContext(null)
+export const LanguageContext = createContext({
+    language:"greek",
+    setLanguage:()=>{}
+})
 
 // eslint-disable-next-line react/prop-types
 export const LanguageContextProvider = ( {children} ) => {

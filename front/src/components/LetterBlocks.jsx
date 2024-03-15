@@ -18,17 +18,13 @@ const selectSingleDistinctRandomLetter = (lettersArray, dictionary) => {
     return randomLetter
 
 }
-//selects the initial amount, when all letters should refresh
+
 function selectRandomLetters(dictionary, blockQuantity){ 
 
     let randomLettersArray = []
 
-    while(randomLettersArray.length < blockQuantity){
-        const randomIndex = Math.floor(Math.random() * dictionary.length);
-        const randomLetter = dictionary[randomIndex];
-        if(!(randomLetter in randomLettersArray)){
-            randomLettersArray.push(randomLetter)
-        }
+    while(randomLettersArray.length < blockQuantity){        
+        randomLettersArray.push(selectSingleDistinctRandomLetter(randomLettersArray, dictionary))        
     }
 
     return randomLettersArray
@@ -38,7 +34,8 @@ const changeAmountofLetters = (setLettersArray, blockQuantity, lettersArray, dic
     
     if(blockQuantity > lettersArray.length){
         let newLetter = selectSingleDistinctRandomLetter(lettersArray, dictionary)
-        setLettersArray(lettersArray.push(newLetter))
+        lettersArray.push(newLetter)
+        setLettersArray(lettersArray)
     }
 
     else if (blockQuantity < lettersArray.length) {
@@ -55,7 +52,6 @@ const LetterBlocks = ({blockQuantity}) => {
     const [lettersArray, setLettersArray] = useState(selectRandomLetters(dictionaryArray, blockQuantity))
     
     changeAmountofLetters(setLettersArray, blockQuantity, lettersArray, dictionaryArray);
-    console.log(lettersArray)
 
     return ( 
     <div className="letter-block-container">

@@ -76,7 +76,9 @@ const LetterBlocks = ({blockQuantity}) => {
                   <div className="letter">?</div>}
                 {transliterationSwitch? 
                   <div className="transliteration">{ dictionary[letter] }</div>:
-                  <AnswerBox answer={ dictionary[letter] } />}                  
+                  <AnswerBox 
+                    answer={ dictionary[letter] }
+                    dictionary={ dictionary } />}                  
             </div>
         ))}               
     </div> 
@@ -101,7 +103,7 @@ const LetterBlocks = ({blockQuantity}) => {
             onChange={() => setTransliterationSwitch(!transliterationSwitch)}
             checked={transliterationSwitch} 
         />
-        <label htmlFor="letters">Transliteration</label>
+        <label htmlFor="transliteration">Transliteration</label>
     </div>  
     </>
     );

@@ -46,6 +46,10 @@ const changeAmountofLetters = (setLettersArray, blockQuantity, lettersArray, dic
 
 }
 
+const handleClick = (setLettersArray, dictionary, blockQuantity) => {
+    setLettersArray(selectRandomLetters(dictionary, blockQuantity))
+}
+
 const LetterBlocks = ({blockQuantity}) => {
     const { language } = useLanguageContext()
     const [letterSwitch, setLetterSwitch] = useState(true)
@@ -72,10 +76,15 @@ const LetterBlocks = ({blockQuantity}) => {
                   <div className="letter">?</div>}
                 {transliterationSwitch? 
                   <div className="transliteration">{ dictionary[letter] }</div>:
-                  <AnswerBox answer={ dictionary[letter] } />}
+                  <AnswerBox answer={ dictionary[letter] } />}                  
             </div>
         ))}               
     </div> 
+    <button 
+      className="refresh" 
+      onClick={() => handleClick(setLettersArray, dictionaryArray, blockQuantity)}>
+      Refresh
+    </button>
     <div className="switch">
         <input 
             type="checkbox"

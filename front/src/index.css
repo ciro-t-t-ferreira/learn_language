@@ -56,13 +56,26 @@ select {
 } 
 
 .number-adjust button {
-  font-size: 60px; /* Adjust font size of the buttons */
-  width: 60px; /* Adjust width of the buttons */
-  height: 60px; /* Adjust height of the buttons */
+  font-size: 60px; 
+  width: auto; 
+  height: auto; 
 }
 
 .number-adjust span {
   font-size: 60px; /* Adjust font size of the block quantity */
+}
+
+.refresh {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.refresh:hover {
+  background-color: var(--primary-color);
 }
 
 .letter-block-container{

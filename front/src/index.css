@@ -144,6 +144,10 @@ select {
   background-color: var(--secondary-color); 
 }
 
+.score{
+  font-size: 50px;
+}
+
 .switch{
   font-size: 50px;
 }

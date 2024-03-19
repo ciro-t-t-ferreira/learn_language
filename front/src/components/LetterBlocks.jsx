@@ -54,11 +54,11 @@ const LetterBlocks = ({blockQuantity}) => {
     
     const createEmptyAnswerArray = (blockQuantity) => {
         const emptyAnswerArray = []
-
+        
         for (let i = 0; i < blockQuantity; i++){
-            emptyAnswerArray.push(null)
+            emptyAnswerArray.push('')
         }
-
+        
         return emptyAnswerArray
     }
     
@@ -68,19 +68,29 @@ const LetterBlocks = ({blockQuantity}) => {
     const [currentAnswers, setCurrentAnswers]               = useState(emptyAnswerArray)    
     const [letterSwitch, setLetterSwitch]                   = useState(true)
     const [transliterationSwitch, setTransliterationSwitch] = useState(true)
-
+    const [isFinished, setIsFinished]                       = useState(false)  
+    
     const dictionary = dictionaryMapping[language]
     const dictionaryArray = Object.keys(dictionary);
     
     const [lettersArray, setLettersArray] = useState(selectRandomLetters(dictionaryArray, blockQuantity))
     
     changeAmountofLetters(setLettersArray, blockQuantity, lettersArray, dictionaryArray);
-
+    
     //Only runs this piece of code when alphabet is changed
     useEffect(() =>{
         setLettersArray(selectRandomLetters(dictionaryArray, blockQuantity))
     }, [language])
-
+    
+    const checkScore = () => {
+        setIsFinished(true)
+        currentAnswers.forEach(a => {
+            if (a == ''){
+                setIsFinished(false)
+            }
+        })
+    }    
+    
     return ( 
     <>
     <div className="letter-block-container">
@@ -89,7 +99,6 @@ const LetterBlocks = ({blockQuantity}) => {
                 {letterSwitch? 
                   <div className="letter">{ letter }</div> :
                   <div className="letter">?</div>}
-                  {console.log(currentAnswers)}
                 {transliterationSwitch? 
                   <div className="transliteration">{ dictionary[letter] }</div>:                  
                   <AnswerBox 
@@ -99,10 +108,12 @@ const LetterBlocks = ({blockQuantity}) => {
                     blockQuantity = { blockQuantity }
                     currentAnswers = { currentAnswers }
                     setCurrentAnswers = { setCurrentAnswers }
+                    checkScore = { checkScore }
                     />}                  
             </div>
         ))}               
-    </div> 
+    </div>
+    {isFinished && <div className="score">show score here</div> } 
     <button 
       className="refresh" 
       onClick={() => handleClick(setLettersArray, dictionaryArray, blockQuantity)}>

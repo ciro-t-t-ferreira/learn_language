@@ -4,7 +4,8 @@
     Bugs: 
         -make the color of the answers endure even when transliteration is turned on/off
         -erase all answers when changing alphabets
-        -check answer should not accept answer with wrong special characters        
+        -check answer should not accept answer with wrong special characters  
+        -remove suggestion box after losing focus      
     Refat: 
         -only show suggestion when there are the option of special characters
     Feats:
@@ -13,7 +14,8 @@
 */ 
 import { useState } from "react";
 
-const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswers }) => {
+const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswers,
+    checkScore }) => {
     
     
     const [backgroundColor, setBackgroundColor]       = useState('#023047')
@@ -30,7 +32,6 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
         const updatedAnswer =  currentAnswers
         updatedAnswer[index] = input
         setCurrentAnswers(updatedAnswer) 
-        console.log(currentAnswers)
     }
     
     const checkAnswer = (attempt) => {
@@ -83,7 +84,8 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
               checkAnswer(event.target.value)
               storageCurrentAnswers(event.target.value, index, currentAnswers, setCurrentAnswers)
               generateSuggestions(event.target.value)
-              handleInput(event.target.value)          
+              handleInput(event.target.value)
+              checkScore()          
             }} 
             onKeyDown={(event) => selectSuggestion(event.key)}          
             style={{ backgroundColor: backgroundColor }}

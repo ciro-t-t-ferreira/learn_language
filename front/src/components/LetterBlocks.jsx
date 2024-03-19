@@ -51,9 +51,24 @@ const handleClick = (setLettersArray, dictionary, blockQuantity) => {
 }
 
 const LetterBlocks = ({blockQuantity}) => {
-    const { language } = useLanguageContext()
-    const [letterSwitch, setLetterSwitch] = useState(true)
+    
+    const createEmptyAnswerArray = (blockQuantity) => {
+        const emptyAnswerArray = []
+
+        for (let i = 0; i < blockQuantity; i++){
+            emptyAnswerArray.push(null)
+        }
+
+        return emptyAnswerArray
+    }
+    
+    const emptyAnswerArray = createEmptyAnswerArray(blockQuantity)
+    
+    const { language }                                      = useLanguageContext()
+    const [currentAnswers, setCurrentAnswers]               = useState(emptyAnswerArray)    
+    const [letterSwitch, setLetterSwitch]                   = useState(true)
     const [transliterationSwitch, setTransliterationSwitch] = useState(true)
+
     const dictionary = dictionaryMapping[language]
     const dictionaryArray = Object.keys(dictionary);
     
@@ -70,16 +85,21 @@ const LetterBlocks = ({blockQuantity}) => {
     <>
     <div className="letter-block-container">
         {lettersArray.map((letter, index)=> (
-            <div className="block" key={index}>
+            <div className="block" key={"letter-block" + index}>
                 {letterSwitch? 
                   <div className="letter">{ letter }</div> :
                   <div className="letter">?</div>}
+                  {console.log(currentAnswers)}
                 {transliterationSwitch? 
                   <div className="transliteration">{ dictionary[letter] }</div>:                  
                   <AnswerBox 
                     answer = { dictionary[letter] }
                     dictionary = { dictionary }
-                    blockQuantity = { blockQuantity } />}                  
+                    index = { index } 
+                    blockQuantity = { blockQuantity }
+                    currentAnswers = { currentAnswers }
+                    setCurrentAnswers = { setCurrentAnswers }
+                    />}                  
             </div>
         ))}               
     </div> 

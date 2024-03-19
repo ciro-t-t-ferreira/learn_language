@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
+
+/*
+    Bug: make the answers endure even when transliteration is turned on/off
+    Refat: only show suggestion when there are the option of special characters
+*/ 
 import { useState } from "react";
 
 const AnswerBox = ( { answer, dictionary }) => {
     const [backgroundColor, setBackgroundColor]       = useState('#023047')
     const [suggestionList, setSuggestionList]         = useState([])
-    const [selectedSuggestion, setSelectedSuggestion] = useState(null)
+    //const [selectedSuggestion, setSelectedSuggestion] = useState(null)
     const [counter , setCounter]                      = useState(0)
     const [inputValue, setInputValue]                 = useState('')  
     
@@ -13,10 +18,10 @@ const AnswerBox = ( { answer, dictionary }) => {
     }
 
     const checkAnswer = (attempt) => {
-        if(attempt == answer.answer){
+        if(attempt == answer){
             setBackgroundColor('#176917')
         }
-        else if(attempt !== answer.answer){ 
+        else if(attempt !== answer){ 
             setBackgroundColor('#712121')
         }
     }
@@ -41,12 +46,12 @@ const AnswerBox = ( { answer, dictionary }) => {
                
         if (key == 'ArrowUp' && counter >= 0){
             setCounter(counter => counter - 1)
-            setSelectedSuggestion(suggestionList[counter])
+            //setSelectedSuggestion(suggestionList[counter])
         }
         
         else if (key == 'ArrowDown' && counter < suggestionList.length){
             setCounter(counter => counter + 1)
-            setSelectedSuggestion(suggestionList[counter])
+            //setSelectedSuggestion(suggestionList[counter])
         }
 
         else if (key == 'Enter' && counter != 0){

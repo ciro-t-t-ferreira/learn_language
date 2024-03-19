@@ -15,7 +15,7 @@
 import { useState } from "react";
 
 const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswers,
-    checkScore }) => {
+    checkIfFinished }) => {
     
     
     const [backgroundColor, setBackgroundColor]       = useState('#023047')
@@ -85,7 +85,7 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
               storageCurrentAnswers(event.target.value, index, currentAnswers, setCurrentAnswers)
               generateSuggestions(event.target.value)
               handleInput(event.target.value)
-              checkScore()          
+              checkIfFinished()          
             }} 
             onKeyDown={(event) => selectSuggestion(event.key)}          
             style={{ backgroundColor: backgroundColor }}

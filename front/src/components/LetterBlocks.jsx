@@ -68,7 +68,8 @@ const LetterBlocks = ({blockQuantity}) => {
     const [currentAnswers, setCurrentAnswers]               = useState(emptyAnswerArray)    
     const [letterSwitch, setLetterSwitch]                   = useState(true)
     const [transliterationSwitch, setTransliterationSwitch] = useState(true)
-    const [isFinished, setIsFinished]                       = useState(false)  
+    const [isFinished, setIsFinished]                       = useState(false) 
+    const [score, setScore]                                 = useState(0) 
     
     const dictionary = dictionaryMapping[language]
     const dictionaryArray = Object.keys(dictionary);
@@ -82,15 +83,26 @@ const LetterBlocks = ({blockQuantity}) => {
         setLettersArray(selectRandomLetters(dictionaryArray, blockQuantity))
     }, [language])
     
-    const checkScore = () => {
+    const checkIfFinished = () => {
         setIsFinished(true)
         currentAnswers.forEach(a => {
             if (a == ''){
                 setIsFinished(false)
             }
         })
+
+        checkScore()
     }    
     
+    const checkScore = () => {
+        setScore(0)
+        for (let i = 0; i < lettersArray.length; i++){
+            dictionary[lettersArray[i]] == currentAnswers[i]? 
+            setScore(score => score +1):
+            undefined
+        }
+    }
+
     return ( 
     <>
     <div className="letter-block-container">
@@ -108,12 +120,12 @@ const LetterBlocks = ({blockQuantity}) => {
                     blockQuantity = { blockQuantity }
                     currentAnswers = { currentAnswers }
                     setCurrentAnswers = { setCurrentAnswers }
-                    checkScore = { checkScore }
+                    checkIfFinished = { checkIfFinished }
                     />}                  
             </div>
         ))}               
     </div>
-    {isFinished && <div className="score">show score here</div> } 
+    {isFinished && <div className="score">{ score }/{ blockQuantity }</div> } 
     <button 
       className="refresh" 
       onClick={() => handleClick(setLettersArray, dictionaryArray, blockQuantity)}>

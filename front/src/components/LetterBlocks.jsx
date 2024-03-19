@@ -75,10 +75,11 @@ const LetterBlocks = ({blockQuantity}) => {
                   <div className="letter">{ letter }</div> :
                   <div className="letter">?</div>}
                 {transliterationSwitch? 
-                  <div className="transliteration">{ dictionary[letter] }</div>:
+                  <div className="transliteration">{ dictionary[letter] }</div>:                  
                   <AnswerBox 
-                    answer={ dictionary[letter] }
-                    dictionary={ dictionary } />}                  
+                    answer = { dictionary[letter] }
+                    dictionary = { dictionary }
+                    blockQuantity = { blockQuantity } />}                  
             </div>
         ))}               
     </div> 

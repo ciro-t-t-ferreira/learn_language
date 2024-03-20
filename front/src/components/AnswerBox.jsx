@@ -25,6 +25,7 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
 
     useEffect(() => {
         setInputValue('')
+        checkAnswer('')
     }, [currentAnswers])
 
     const handleInput = (input) => {
@@ -39,10 +40,13 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     
     const checkAnswer = (attempt) => {
         if(attempt == answer){
-            setBackgroundColor('#176917')
+            setBackgroundColor('#176917') //make a var on a decent color
         }
         else if(attempt !== answer){ 
-            setBackgroundColor('#712121')
+            setBackgroundColor('#712121') //make a var on a decent color
+        }
+        if(attempt == ''){
+            setBackgroundColor('var(--dark-color)')
         }
     }
     

@@ -9,10 +9,10 @@
     Refat: 
         -only show suggestion when there are the option of special characters
     Feats:
-        -when all blocks are filled show total of right answers, and the correct answers
+        -when all blocks are filled show the correct answers
         -move to next block when press enter
 */ 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswers,
     checkIfFinished }) => {
@@ -23,7 +23,10 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     const [counter , setCounter]                      = useState(0)
     const [inputValue, setInputValue]                 = useState(currentAnswers[index])
 
-    
+    useEffect(() => {
+        setInputValue('')
+    }, [currentAnswers])
+
     const handleInput = (input) => {
         setInputValue(input)
     }

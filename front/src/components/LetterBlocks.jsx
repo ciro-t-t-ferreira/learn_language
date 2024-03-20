@@ -81,6 +81,7 @@ const LetterBlocks = ({blockQuantity}) => {
     //Only runs this piece of code when alphabet is changed
     useEffect(() =>{
         setLettersArray(selectRandomLetters(dictionaryArray, blockQuantity))
+        setCurrentAnswers(createEmptyAnswerArray(blockQuantity))
     }, [language])
     
     const checkIfFinished = () => {

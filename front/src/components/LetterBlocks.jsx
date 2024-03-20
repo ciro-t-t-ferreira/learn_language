@@ -122,7 +122,10 @@ const LetterBlocks = ({blockQuantity}) => {
                     currentAnswers = { currentAnswers }
                     setCurrentAnswers = { setCurrentAnswers }
                     checkIfFinished = { checkIfFinished }
-                    />}                  
+                    />                    
+                }
+                {isFinished && !transliterationSwitch &&
+                 <div className="final-answer">{dictionary[letter]}</div> }               
             </div>
         ))}               
     </div>

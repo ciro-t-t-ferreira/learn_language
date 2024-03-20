@@ -121,6 +121,17 @@ select {
   max-width: 200px;
 }
 
+.final-answer{
+  display: block;
+  color: var(--light-color);
+  background-color: var(--primary-color);      
+  border: 5px solid black;
+  padding: 10px;    
+  font-size: 75px;
+  margin: 7px;
+  max-width: 150px;
+}
+
 .suggestion-box{
   display: block;
   color: var(--light-color);

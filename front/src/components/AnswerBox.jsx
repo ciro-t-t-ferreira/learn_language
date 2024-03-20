@@ -2,7 +2,6 @@
 
 /*
     Bugs: 
-        -remove suggestion box after losing focus 
         -do not allow repeated letters     
     Refat: 
         -only show suggestion when there are the option of special characters
@@ -39,7 +38,6 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     }
     
     const checkAnswer = (attempt) => {
-        console.log(attempt, answer)
         if(attempt == answer){
             setBackgroundColor('#176917') //make a var on a decent color
         }
@@ -57,13 +55,14 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     
     const generateSuggestions = (attempt) => {
         const list = []
+        const normalizedAttempt = normalize(attempt)
         
         for (const key in dictionary) {
             const value = dictionary[key];
             const normalizedValue = normalize(value);
-            normalizedValue === attempt? list.push(value) : undefined
+            (normalizedValue === normalizedAttempt) && (value != normalizedValue)?
+            list.push(value) : undefined
         }
-
         if(list.length > 0){
             setAllowSuggestionBox(true)
         }
@@ -84,6 +83,7 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
         
         else if (key == 'Enter' && counter != 0){
             handleInput(suggestionList[counter - 1])
+            setAllowSuggestionBox(false)
         }
     }
     

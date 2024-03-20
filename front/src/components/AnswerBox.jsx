@@ -2,10 +2,8 @@
 
 /*
     Bugs: 
-        -make the color of the answers endure even when transliteration is turned on/off
-        -erase all answers when changing alphabets
-        -check answer should not accept answer with wrong special characters  
-        -remove suggestion box after losing focus      
+        -remove suggestion box after losing focus 
+        -do not allow repeated letters     
     Refat: 
         -only show suggestion when there are the option of special characters
     Feats:
@@ -24,12 +22,13 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     const [inputValue, setInputValue]                 = useState(currentAnswers[index])
 
     useEffect(() => {
-        setInputValue('')
-        checkAnswer('')
+        setInputValue(currentAnswers[index])
+        checkAnswer(currentAnswers[index])
     }, [currentAnswers])
 
     const handleInput = (input) => {
         setInputValue(input)
+        checkAnswer(input)
     }
     
     const storageCurrentAnswers = (input, index, currentAnswers, setCurrentAnswers) => {
@@ -39,6 +38,7 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     }
     
     const checkAnswer = (attempt) => {
+        console.log(attempt, answer)
         if(attempt == answer){
             setBackgroundColor('#176917') //make a var on a decent color
         }

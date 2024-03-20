@@ -82,6 +82,7 @@ const LetterBlocks = ({blockQuantity}) => {
     useEffect(() =>{
         setLettersArray(selectRandomLetters(dictionaryArray, blockQuantity))
         setCurrentAnswers(createEmptyAnswerArray(blockQuantity))
+        setIsFinished(false)
     }, [language])
     
     const checkIfFinished = () => {

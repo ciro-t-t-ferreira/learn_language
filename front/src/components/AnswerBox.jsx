@@ -4,9 +4,7 @@
     Bugs: 
         -do not allow repeated letters     
     Refat: 
-        -only show suggestion when there are the option of special characters
     Feats:
-        -when all blocks are filled show the correct answers
         -move to next block when press enter
 */ 
 import { useEffect, useState } from "react";

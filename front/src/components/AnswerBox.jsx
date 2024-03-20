@@ -20,6 +20,7 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
     const [suggestionList, setSuggestionList]         = useState([])
     const [counter , setCounter]                      = useState(0)
     const [inputValue, setInputValue]                 = useState(currentAnswers[index])
+    const [allowSuggestionBox, setAllowSuggestionBox] = useState(false)
 
     useEffect(() => {
         setInputValue(currentAnswers[index])
@@ -62,6 +63,11 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
             const normalizedValue = normalize(value);
             normalizedValue === attempt? list.push(value) : undefined
         }
+
+        if(list.length > 0){
+            setAllowSuggestionBox(true)
+        }
+
         setSuggestionList(list)
         
     }
@@ -92,14 +98,16 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
               storageCurrentAnswers(event.target.value, index, currentAnswers, setCurrentAnswers)
               generateSuggestions(event.target.value)
               handleInput(event.target.value)
-              checkIfFinished()          
+              checkIfFinished()
+                        
             }} 
-            onKeyDown={(event) => selectSuggestion(event.key)}          
-            style={{ backgroundColor: backgroundColor }}
-            value = {inputValue}
+          onKeyDown={(event) => selectSuggestion(event.key)}
+          onBlur={() => setAllowSuggestionBox(false)}          
+          style={{ backgroundColor: backgroundColor }}
+          value = {inputValue}
             />
         {
-        (suggestionList.length != 0) && 
+        (suggestionList.length != 0) && allowSuggestionBox &&
         <ul className="suggestion-box"> 
             {
                 suggestionList.map((s, index)=>{

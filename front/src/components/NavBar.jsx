@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLanguageContext } from "../hooks/useLanguageContext";
+import languages from "../utilities/languages"
+
 
 const NavBar = () => {
     const { setLanguage } = useLanguageContext()
@@ -12,10 +14,9 @@ const NavBar = () => {
         <div> 
             <div className="language-selector">Learn 
             <select onChange={(e) => handleChange(e)}>
-                    <option value="greek">Greek </option>
-                    <option value="devanagari">Devanagari</option>
-                    <option value="hebrew">Hebrew </option>
-                    <option value="cyrillic">Cyrillic </option>
+                {Object.values(languages).map((language) => (
+                    <option key={language} value={language}>{language}</option>
+                ))}
             </select>
             </div>
             <div className="menu">

@@ -9,5 +9,5 @@ const app = express()
 //listen to requests
 
 app.listen(4000, () => {
-    console.log('hi')
+    console.log('Listening on port 4000')
 })

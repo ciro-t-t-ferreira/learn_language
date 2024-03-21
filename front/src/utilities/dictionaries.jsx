@@ -1,3 +1,5 @@
+import languages from "./languages"
+
 export const devanagariDictionary = {
     'अ': 'a', 'आ': 'ā', 'इ': 'i', 'ई': 'ī', 'उ': 'u',
     'ऊ': 'ū', 'ऋ': 'ṛ', 'ॠ': 'ṝ', 'ऌ': 'ḷ', 'ॡ': 'ḹ',
@@ -62,8 +64,8 @@ export const hebrewDictionary = {
 };
 
 export const dictionaryMapping = {
-    'devanagari': devanagariDictionary,
-    'greek'     : greekDictionary,
-    'hebrew'    : hebrewDictionary,
-    'cyrillic'  : cyrillicDictionary
+    [languages[1]]: greekDictionary,
+    [languages[2]]: devanagariDictionary,
+    [languages[3]]: hebrewDictionary,
+    [languages[4]]: cyrillicDictionary
 }

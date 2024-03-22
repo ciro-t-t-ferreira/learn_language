@@ -2,7 +2,8 @@
 
 /*
     Bugs: 
-        -do not allow repeated letters     
+        -do not allow repeated letters 
+        -if answers contains special character the answer counting will wait a action to rerender properly   
     Refat: 
     Feats:
         -move to next block when press enter
@@ -82,6 +83,8 @@ const AnswerBox = ( { answer, dictionary, index, currentAnswers, setCurrentAnswe
         else if (key == 'Enter' && counter != 0){
             handleInput(suggestionList[counter - 1])
             setAllowSuggestionBox(false)
+            //storageCurrentAnswers(suggestionList[counter - 1], index, currentAnswers,
+            //     setCurrentAnswers)
         }
     }
     

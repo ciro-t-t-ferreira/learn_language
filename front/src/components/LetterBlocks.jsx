@@ -88,7 +88,7 @@ const LetterBlocks = ({blockQuantity}) => {
     const checkIfFinished = () => {
         setIsFinished(true)
         currentAnswers.forEach(a => {
-            if (a == ''){
+            if (a == ''){                
                 setIsFinished(false)
             }
         })
@@ -99,6 +99,7 @@ const LetterBlocks = ({blockQuantity}) => {
     const checkScore = () => {
         setScore(0)
         for (let i = 0; i < lettersArray.length; i++){
+            console.log(dictionary[lettersArray[i]], currentAnswers[i])
             dictionary[lettersArray[i]] == currentAnswers[i]? 
             setScore(score => score +1):
             undefined

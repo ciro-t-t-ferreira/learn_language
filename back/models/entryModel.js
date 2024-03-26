@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -20,11 +20,11 @@ const entrySchema = new Schema({
         required: false
     },
     annotations:{
-        type: Number,
+        type: String,
         required: false
     }
 },{
     timestamps: true,        
 });
 
-export default mongoose.model('Workout', workoutSchema);
+module.exports = mongoose.model('Entry', entrySchema);

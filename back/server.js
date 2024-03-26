@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express');
+const mongoose = require('mongoose');
 const routes = require('./routes/vocabulary')
 
 const app = express()
@@ -15,8 +16,13 @@ app.use((req, res, next) => {
 //routes
 app.use('/api/vocabulary', routes)
 
-//listen to requests
-
-app.listen(process.env.PORT, () => {
-    console.log('Listening on port ' + process.env.PORT)
-})
+//DB connection
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        //listen to requests
+        app.listen(process.env.PORT, () => {
+        console.log('Connected to Db and Listening on port ' + process.env.PORT)})
+    })
+    .catch((error) => {
+        console.log(error)
+    })

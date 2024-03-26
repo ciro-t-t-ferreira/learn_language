@@ -1,30 +1,27 @@
 const express = require('express')
+const {
+    getAllEntries,
+    getSingleEntry,
+    createEntry,
+    deleteEntry,
+    updateEntry
+} = require('../controllers/vocabularyController')
 
 const router = express.Router()
 
 //GET all entries from given language
-router.get('/:language/', (req,res) => {
-    res.json({mssg:'GET all words'})
-})
+router.get('/:language/', getAllEntries)
 
 //GET single entry from given language
-router.get('/:language/:id', (req, res) => {
-    res.json({mssg:'GET single words'})
-})
+router.get('/:language/:id', getSingleEntry)
 
 //POST an entry for a given language
-router.post('/:language/', (req, res) => {
-    res.json({mssg:'POST a word'})
-})
+router.post('/:language/', createEntry)
 
 //DELETE an entry for a given language
-router.delete('/:language/:id', (req, res) => {
-    res.json({mssg:'DELETE WORD'})
-})
+router.delete('/:language/:id', deleteEntry)
 
 //UPDATE an entry for a given language
-router.put('/:language/:id', (req, res) => {
-    res.json({mssg:'UPDATE WORD'})
-})
+router.put('/:language/:id', updateEntry)
 
 module.exports = router

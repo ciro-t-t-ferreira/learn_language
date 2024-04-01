@@ -1,17 +1,19 @@
-import { useLanguageContext } from "../hooks/useLanguageContext";
 import VocabularyList from "../components/VocabularyList"
+import VocabularyDetais from "../components/VocabularyDetails";
 import EntryForm from "../components/EntryForm";
+import { useState } from "react";
 
 const VocabularyPage = () => {
-    const { language } = useLanguageContext()  
+    const [currentEntry, setCurrentEntry] = useState();
 
     return ( 
         <div className="vocabulary-page">
-            <h2>Vocabulary: {language}</h2>
-            <EntryForm />
-            <VocabularyList />            
+            <VocabularyDetais
+              currentEntry = {currentEntry} />
+            <VocabularyList
+              setCurrentEntry = {setCurrentEntry} />            
         </div>
-     );
+    );
 }
  
 export default VocabularyPage;

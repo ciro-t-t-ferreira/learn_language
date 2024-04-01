@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useLanguageContext } from "../hooks/useLanguageContext";
 
-const VocabularyList = () => {
+const VocabularyList = ({setCurrentEntry}) => {
     const [fullVocabulary, setFullVocabulary] = useState()
     const { language } = useLanguageContext()  
 
@@ -19,16 +19,17 @@ const VocabularyList = () => {
     }, [language] )
 
     return (
-        <div className="vocabulary-list"> 
+        <span className="vocabulary-list"> 
         {fullVocabulary &&
             fullVocabulary.map((entry, index) => (
                 <p 
                   className="entry"
-                  key={'entry' + index}>
+                  key={'entry' + index}
+                  onClick={() => setCurrentEntry(entry)}>
                 {entry.word}</p>
             ))                
         }
-        </div>
+        </span>
      );
 }
  

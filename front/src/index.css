@@ -167,3 +167,17 @@ select {
   width: 35px;
   height: 35px;
 }
+
+.vocabulary-page {
+  display: flex;
+  justify-content: space-between;
+  font-size: 36px;
+}
+
+.vocabulary-list{
+  flex: 0 0 auto; 
+  width: 300px;
+  font-size: 36px;
+}
+
+

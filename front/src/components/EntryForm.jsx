@@ -3,14 +3,14 @@ import { useLanguageContext } from "../hooks/useLanguageContext";
 
 const EntryForm = () => {
     const [word, setWord                ] = useState('') 
-    const [translation, setTranslation  ] = useState('') 
-    const [annotation, setAnnotation    ] = useState('')
+    const [userTranslation, setUserTranslation  ] = useState('') 
+    const [annotations, setAnnotation    ] = useState('')
     const [isPending, setIsPending      ] = useState(false)
     const { language } = useLanguageContext()  
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const entry = {language, word, translation, annotation}
+        const entry = {language, word, userTranslation, annotations}
 
         setIsPending(true);
         console.log(language)
@@ -40,13 +40,13 @@ const EntryForm = () => {
                 <label>Translation:</label>
                 <input
                 required
-                value = { translation }
-                onChange={(e) => setTranslation(e.target.value)} 
+                value = { userTranslation }
+                onChange={(e) => setUserTranslation(e.target.value)} 
                 >                    
                 </input>
                 <label>Annotation:</label>
                 <textarea
-                value = { annotation }
+                value = { annotations }
                 onChange={(e) => setAnnotation(e.target.value)} 
                 >                    
                 </textarea>

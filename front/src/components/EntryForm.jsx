@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react"
 import { useLanguageContext } from "../hooks/useLanguageContext";
 
-const EntryForm = () => {
+const EntryFormModal = ({toggleModal}) => {
     const [word, setWord                ] = useState('') 
     const [userTranslation, setUserTranslation  ] = useState('') 
     const [annotations, setAnnotation    ] = useState('')
@@ -27,6 +28,10 @@ const EntryForm = () => {
     }
 
     return ( 
+        <>
+        <div 
+          className="overlay"
+          onClick={toggleModal}></div>
         <div className="entry-form">
             <form onSubmit={handleSubmit}>
                 <h2>Add a New Entry</h2>
@@ -53,8 +58,12 @@ const EntryForm = () => {
                 {!isPending && <button>Add Entry</button>}                
                 {isPending && <button disabled>Add Entry</button>}                
             </form>
+            <button 
+            className="close-button"
+            onClick={toggleModal}>CLOSE</button>
         </div>
+        </>
      );
 }
  
-export default EntryForm;
+export default EntryFormModal;

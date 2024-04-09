@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { useLanguageContext } from "../hooks/useLanguageContext";
 
-const EntryFormModal = ({toggleModal}) => {
+const EntryFormModal = () => {
     const [word, setWord                ] = useState('') 
     const [userTranslation, setUserTranslation  ] = useState('') 
     const [annotations, setAnnotation    ] = useState('')
@@ -28,10 +28,7 @@ const EntryFormModal = ({toggleModal}) => {
     }
 
     return ( 
-        <>
-        <div 
-          className="overlay"
-          onClick={toggleModal}></div>
+        <>        
         <div className="entry-form">
             <form onSubmit={handleSubmit}>
                 <h2>Add a New Entry</h2>
@@ -57,10 +54,7 @@ const EntryFormModal = ({toggleModal}) => {
                 </textarea>
                 {!isPending && <button>Add Entry</button>}                
                 {isPending && <button disabled>Add Entry</button>}                
-            </form>
-            <button 
-            className="close-button"
-            onClick={toggleModal}>CLOSE</button>
+            </form>            
         </div>
         </>
      );

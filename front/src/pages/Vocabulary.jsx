@@ -1,6 +1,7 @@
 import VocabularyList from "../components/VocabularyList"
 import VocabularyDetais from "../components/VocabularyDetails";
 import EntryFormModal from "../components/EntryForm";
+import Modal from "../components/Modal"
 import { useState } from "react";
 
 const VocabularyPage = () => {
@@ -13,7 +14,8 @@ const VocabularyPage = () => {
     return ( 
         <>
           {modal &&
-          <EntryFormModal
+          <Modal
+            ModalContent = { EntryFormModal }
             toggleModal = {toggleModal} />}
           <button
            className="add-entry"

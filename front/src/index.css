@@ -191,7 +191,7 @@ select {
   background: rgba(49,49,49,0.8)
 }
 
-.entry-form{
+.modal{
   position     : absolute;
   top          : 40%;
   left         : 50%;

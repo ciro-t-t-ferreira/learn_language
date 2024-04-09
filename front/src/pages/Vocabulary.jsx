@@ -16,7 +16,7 @@ const VocabularyPage = () => {
           {modal &&
           <Modal
             ModalContent = { EntryFormModal }
-            toggleModal = {toggleModal} />}
+            toggleModal = { toggleModal } />}
           <button
            className="add-entry"
            onClick={toggleModal}>ADD
